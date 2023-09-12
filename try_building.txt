@@ -1,0 +1,12 @@
+#how to
+./cloudsc-bundle create
+./cloudsc-bundle build
+build/install.sh --fast
+cd src/cloudsc2_python/
+. bootstrap_venv.sh
+source venv/bin/activate
+python3 drivers/run_fortran.py
+python3 drivers/run_nonlinear.py 
+python3 drivers/run_symmetry_test.py
+python3 drivers/run_tangent.py 
+python3 drivers/run_taylor_test.py 

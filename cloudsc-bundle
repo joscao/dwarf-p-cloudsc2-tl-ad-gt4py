@@ -19,9 +19,9 @@ export PYTHONPATH=${ECBUNDLE_DIR}/contrib:${PYTHONPATH}
 # Which script do we run?
 # Partial matches are accepted, e.g. "$0 cr"
 if [[ "build" == "$1"* ]]; then
-  BOOTSTRAPPED=${ECBUNDLE_DIR}ecbundle-build
+  BOOTSTRAPPED=${ECBUNDLE_DIR}bin/ecbundle-build
 elif [[ "create" == "$1"* ]]; then
-  BOOTSTRAPPED=${ECBUNDLE_DIR}ecbundle-create
+  BOOTSTRAPPED=${ECBUNDLE_DIR}bin/ecbundle-create
 else
   echo "FAIL: Expected 'build' or 'create' as first argument"
   exit 1
@@ -41,7 +41,7 @@ fi
 command_exists () { type "$1" &> /dev/null ; }
 if ! command_exists ${BOOTSTRAPPED} ; then
     if [[ ! -d ${BUNDLE_DIR}/ecbundle ]]; then
-        git clone ${GIT}/escape/ecbundle.git ${BUNDLE_DIR}/ecbundle
+        git clone ${GIT}/ecbundle.git ${BUNDLE_DIR}/ecbundle
         ( cd ${BUNDLE_DIR}/ecbundle && git checkout ${ecbundle_VERSION} )
     fi
     export PATH=${BUNDLE_DIR}/ecbundle/bin:${PATH}
